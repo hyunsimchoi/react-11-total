@@ -1,8 +1,16 @@
-function ProjectCard() {
+type ProjectCardProps = {
+    icon: string;
+    title: string;
+    description: string;
+};
+
+function ProjectCard({ icon, title, description }: ProjectCardProps) {
     return (
         <div>
-            <h2>**todo 프로젝트 카드</h2>
-            <p>체계적인 일정 관리와 할 일 목록 기록</p>
+            <h2>
+                {icon} {title}
+            </h2>
+            <p>{description}</p>
         </div>
     );
 }

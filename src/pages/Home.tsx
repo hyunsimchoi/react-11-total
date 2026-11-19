@@ -6,7 +6,34 @@ function Home() {
             <h1>My Project Dashboard</h1>
             <p>지금까지 구축한 포트폴리오 리스트입니다.</p>
 
-            <ProjectCard />
+            <ProjectCard
+                icon="**"
+                title="투두"
+                description="체계적인 일정 관리와 할 일 목록 기록"
+            />
+
+            <ProjectCard
+                icon="**"
+                title="코인"
+                description="실시간 가상화폐 시세 확인 및 정보 트래킹"
+            />
+
+            <ProjectCard
+                icon="**"
+                title="무비"
+                description="영화 데이터베이스 API를 활용한 영화 검색"
+            />
+
+            <ProjectCard
+                icon="**"
+                title="로켓"
+                description="스페이스X 로켓 발사 정보 조회" />
+
+            <ProjectCard
+                icon="**"
+                title="북스"
+                description="구글 도서 데이터를 활용한 온라인 책 검색"
+            />
         </div>
     );
 }
