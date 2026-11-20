@@ -5,8 +5,9 @@ import Home from "../pages/Home";
 import Todo from "../pages/Todo";
 import Coin from "../pages/Coin";
 import Movie from "../pages/Movie";
-import Rocket from "../pages/Rocket";
+import Product from "../pages/Product";
 import Book from "../pages/Book";
+import Board from "../pages/Board";
 
 const AppRouter = createBrowserRouter([
     {
@@ -17,8 +18,9 @@ const AppRouter = createBrowserRouter([
             { path: "todo", element: <Todo /> },
             { path: "coin", element: <Coin /> },
             { path: "movie", element: <Movie /> },
-            { path: "rocket", element: <Rocket /> },
+            { path: "product", element: <Product /> },
             { path: "book", element: <Book /> },
+            { path: "board", element: <Board /> },
         ],
     },
 ]);

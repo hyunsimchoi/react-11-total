@@ -18,7 +18,7 @@ function Home() {
 
                 <ProjectCard
                     icon="**"
-                    title="코인"
+                    title="코인트래커"
                     description="실시간 가상화폐 시세 확인 및 정보 트래킹"
                     path="/coin"
                 />
@@ -32,9 +32,9 @@ function Home() {
 
                 <ProjectCard
                     icon="**"
-                    title="로켓"
-                    description="스페이스X 로켓 발사 정보 조회"
-                    path="/rocket"
+                    title="상품"
+                    description="상품 조회"
+                    path="/product"
                 />
 
                 <ProjectCard
@@ -42,6 +42,13 @@ function Home() {
                     title="북스"
                     description="구글 도서 데이터를 활용한 온라인 책 검색"
                     path="/book"
+                />
+
+                <ProjectCard
+                    icon="**"
+                    title="게시판"
+                    description="게시글을 작성하고 확인하는 공간"
+                    path="/board"
                 />
             </section>
         </div>
