@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router";
 
+import type { ReactNode } from "react";
 type ProjectCardProps = {
-    icon: string;
+    icon: ReactNode;
     title: string;
     description: string;
     path: string;
@@ -26,27 +27,57 @@ const Card = styled(Link)`
     text-align: center;
     text-decoration: none;
 
+    /* 움직임을 부드럽게 */
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+
+    /* 짝수 카드 배경 */
     &:nth-child(even) {
         background: #b9bd90;
     }
 
+    /* 마우스를 올렸을 때 */
     &:hover {
-        transform: translateY(-4px);
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
     }
 
-    transition: transform 0.2s;
-
+    /* 블랙 테마 */
     body.black-theme &,
     body.black-theme &:nth-child(even) {
         background: #252525;
         color: #ffffff;
         border: 1px solid #404040;
     }
+
+    /* 블랙 테마에서 마우스를 올렸을 때 */
+    body.black-theme &:hover {
+        background: #303030;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    }
 `;
 
 // 아이콘
 const CardIcon = styled.div`
-    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 38px;
+    color: #626b3e;
+
+    transition: transform 0.3s;
+
+    /* 카드에 마우스를 올리면 아이콘 확대 */
+    ${Card}:hover & {
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+
+    body.black-theme & {
+        color: #c6cc9a;
+    }
 `;
 
 // 제목

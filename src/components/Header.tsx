@@ -2,6 +2,16 @@ import styled from "styled-components";
 import { NavLink } from "react-router";
 import { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { FaMoon, FaSun } from "react-icons/fa";
+import {
+    FaHouse,
+    FaListCheck,
+    FaCoins,
+    FaFilm,
+    FaBagShopping,
+    FaBookOpen,
+    FaPenToSquare,
+} from "react-icons/fa6";
 
 const Head = styled.header`
     position: sticky;
@@ -22,7 +32,7 @@ const Head = styled.header`
         border-bottom-color: #383838;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
         grid-template-columns: 1fr auto;
     }
 `;
@@ -37,31 +47,55 @@ const Logo = styled.h1`
 // 3. 중앙 메뉴
 const Nav = styled.nav`
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 24px;
+    gap: 8px;
 
     a {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+
+        padding: 10px 12px;
+        border-radius: 10px;
+        white-space: nowrap;
+
         color: inherit;
         text-decoration: none;
+        font-size: 14px;
+
+        transition:
+            background 0.2s,
+            color 0.2s;
+    }
+
+    a:hover {
+        background: #555c35;
+        color: #ffffff;
     }
 
     a.active {
+        background: #555c35;
         color: #f5d881;
         font-weight: bold;
     }
 
+    body.black-theme & a:hover,
     body.black-theme & a.active {
+        background: #303030;
         color: #ffffff;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
         grid-row: 2;
         grid-column: 1 / -1;
+
+        width: 100%;
+        justify-content: flex-start;
         flex-wrap: wrap;
     }
 `;
-
 // 4. 오른쪽 테마 버튼
 const ThemeButton = styled.button`
     justify-self: end;
@@ -74,6 +108,10 @@ const ThemeButton = styled.button`
     background: transparent;
     color: inherit;
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
     body.black-theme & {
         background: #252525;
@@ -91,24 +129,44 @@ function Header() {
     }
 
     const { theme, toggleTheme } = context;
+
     return (
         <Head>
             <Logo>My Universe</Logo>
 
             <Nav>
                 <NavLink to="/" end>
-                    Home
+                    <FaHouse /> Home
                 </NavLink>
-                <NavLink to="/todo">Todo</NavLink>
-                <NavLink to="/coin">Coin</NavLink>
-                <NavLink to="/movie">Movie</NavLink>
-                <NavLink to="/product">Product</NavLink>
-                <NavLink to="/book">Book</NavLink>
-                <NavLink to="/board">Board</NavLink>
+
+                <NavLink to="/todo">
+                    <FaListCheck /> Todo
+                </NavLink>
+
+                <NavLink to="/coin">
+                    <FaCoins /> Coin
+                </NavLink>
+
+                <NavLink to="/movie">
+                    <FaFilm /> Movie
+                </NavLink>
+
+                <NavLink to="/product">
+                    <FaBagShopping /> Product
+                </NavLink>
+
+                <NavLink to="/book">
+                    <FaBookOpen /> Book
+                </NavLink>
+
+                <NavLink to="/board">
+                    <FaPenToSquare /> Board
+                </NavLink>
             </Nav>
 
             <ThemeButton type="button" onClick={toggleTheme}>
-                {theme === "olive" ? "** 다크" : "** 기본"}
+                {theme === "olive" ? <FaMoon /> : <FaSun />}
+                {theme === "olive" ? "다크" : "기본"}
             </ThemeButton>
         </Head>
     );

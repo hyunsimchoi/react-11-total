@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { FaPlus, FaTrash, FaListCheck } from "react-icons/fa6";
 
 type TodoItem = {
     id: number;
@@ -46,17 +47,21 @@ const TodoInput = styled.input`
 
 // 추가 버튼
 const AddButton = styled.button`
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  background: #b9bd90;
-  color: #252b13;
-  cursor: pointer;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #b9bd90;
+    color: #252b13;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 
-  body.black-theme & {
-    background: #444444;
-    color: #ffffff;
-  }
+    body.black-theme & {
+        background: #444444;
+        color: #ffffff;
+    }
 `;
 
 // 할 일 목록
@@ -92,18 +97,21 @@ const TodoCheckbox = styled.input`
 
 // 삭제 버튼
 const DeleteButton = styled.button`
-  margin-left: auto;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 6px;
-  background: #777d48;
-  color: #ffffff;
-  cursor: pointer;
-
-  body.black-theme & {
-    background: #333333;
+    margin-left: auto;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #777d48;
     color: #ffffff;
-  }
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    body.black-theme & {
+        background: #333333;
+        color: #ffffff;
+    }
 `;
 
 function Todo() {
@@ -157,7 +165,9 @@ function Todo() {
 
     return (
         <TodoPage>
-            <h1>Todo 페이지</h1>
+            <h1>
+                <FaListCheck /> Todo 페이지
+            </h1>
             <p>할 일을 관리하는 공간입니다.</p>
 
             <TodoForm onSubmit={handleSubmit}>
@@ -168,7 +178,9 @@ function Todo() {
                     onChange={e => setText(e.target.value)}
                 />
 
-                <AddButton type="submit">추가</AddButton>
+                <AddButton type="submit">
+                    <FaPlus /> 추가
+                </AddButton>
             </TodoForm>
 
             <h2>할 일 목록</h2>
@@ -191,7 +203,7 @@ function Todo() {
                         </span>
 
                         <DeleteButton type="button" onClick={() => deleteTodo(todo.id)}>
-                            삭제
+                            <FaTrash />
                         </DeleteButton>
                     </TodoRow>
                 ))}

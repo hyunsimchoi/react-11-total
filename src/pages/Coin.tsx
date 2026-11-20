@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 
 type CoinItem = {
     id: string;
@@ -240,12 +241,16 @@ const DetailTitle = styled.h2`
 
 // 상승과 하락 색상
 const CoinChange = styled.span<{ $up: boolean }>`
-  color: ${props => props.$up ? "#087c32" : "#c52e2e"};
-  font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 
-  body.black-theme & {
-    color: ${props => props.$up ? "#73d69a" : "#ff8585"};
-  }
+    color: ${props => (props.$up ? "#087c32" : "#c52e2e")};
+    font-weight: bold;
+
+    body.black-theme & {
+        color: ${props => (props.$up ? "#73d69a" : "#ff8585")};
+    }
 `;
 
 // 24시간 변동률
@@ -292,9 +297,7 @@ function formatChange(change: string) {
         return "정보 없음";
     }
 
-    const arrow = number >= 0 ? "▲" : "▼";
-
-    return arrow + Math.abs(number).toFixed(2) + "%";
+    return Math.abs(number).toFixed(2) + "%";
 }
 
 function Coin() {
@@ -349,20 +352,15 @@ function Coin() {
                 <CoinLayout>
                     {/* 왼쪽: 코인 목록 */}
                     <Panel>
-                        <PanelTitle>
-                            Top 50 Coins ({coins.length}개)
-                        </PanelTitle>
+                        <PanelTitle>Top 50 Coins ({coins.length}개)</PanelTitle>
 
                         <CoinList>
-                            {coins.map((coin) => (
+                            {coins.map(coin => (
                                 <li key={coin.id}>
                                     <CoinButton
                                         type="button"
-                                        className={
-                                            selectedCoin?.id === coin.id ? "selected" : ""
-                                        }
-                                        onClick={() => setSelectedCoin(coin)}
-                                    >
+                                        className={selectedCoin?.id === coin.id ? "selected" : ""}
+                                        onClick={() => setSelectedCoin(coin)}>
                                         <CoinTop>
                                             <strong>{coin.name}</strong>
                                             <strong>{formatPrice(coin.price_usd)}</strong>
@@ -371,9 +369,13 @@ function Coin() {
                                         <CoinBottom>
                                             <span>{coin.symbol}</span>
 
-                                            <CoinChange
-                                                $up={Number(coin.percent_change_24h) >= 0}
-                                            >
+                                            <CoinChange $up={Number(coin.percent_change_24h) >= 0}>
+                                                {Number(coin.percent_change_24h) >= 0 ? (
+                                                    <FaArrowTrendUp />
+                                                ) : (
+                                                    <FaArrowTrendDown />
+                                                )}
+
                                                 {formatChange(coin.percent_change_24h)}
                                             </CoinChange>
                                         </CoinBottom>
@@ -395,26 +397,26 @@ function Coin() {
                                 <CoinStats>
                                     <StatCard>
                                         <p>현재 가격 (USD)</p>
-                                        <strong>
-                                            {formatPrice(selectedCoin.price_usd)}
-                                        </strong>
+                                        <strong>{formatPrice(selectedCoin.price_usd)}</strong>
                                     </StatCard>
 
                                     <StatCard>
                                         <p>시가총액</p>
                                         <strong>
-                                            {"$" + Number(
-                                                selectedCoin.market_cap_usd
-                                            ).toLocaleString("en-US")}
+                                            {"$" +
+                                                Number(selectedCoin.market_cap_usd).toLocaleString(
+                                                    "en-US",
+                                                )}
                                         </strong>
                                     </StatCard>
 
                                     <StatCard>
                                         <p>24시간 거래량</p>
                                         <strong>
-                                            {"$" + Number(
-                                                selectedCoin.volume24
-                                            ).toLocaleString("en-US")}
+                                            {"$" +
+                                                Number(selectedCoin.volume24).toLocaleString(
+                                                    "en-US",
+                                                )}
                                         </strong>
                                     </StatCard>
 
@@ -426,11 +428,13 @@ function Coin() {
 
                                 <CoinChangeText>
                                     24시간 변동률:{" "}
-                                    <CoinChange
-                                        $up={Number(
-                                            selectedCoin.percent_change_24h
-                                        ) >= 0}
-                                    >
+                                    <CoinChange $up={Number(selectedCoin.percent_change_24h) >= 0}>
+                                        {Number(selectedCoin.percent_change_24h) >= 0 ? (
+                                            <FaArrowTrendUp />
+                                        ) : (
+                                            <FaArrowTrendDown />
+                                        )}
+
                                         {formatChange(selectedCoin.percent_change_24h)}
                                     </CoinChange>
                                 </CoinChangeText>
