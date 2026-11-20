@@ -251,6 +251,178 @@ const GlobalStyle = createGlobalStyle`
       color: #252b13;
       cursor: pointer;
   }
+
+  /* ----- Coin 페이지 전체 ----- */
+  .coin-page h1 {
+      margin-bottom: 24px;
+  }
+
+  /* 왼쪽 목록 + 오른쪽 상세 정보 */
+  .coin-layout {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+  }
+
+  /* 양쪽 패널 공통 디자인 */
+  .coin-list-panel,
+  .coin-detail-panel {
+      background: #454a2a;
+      border: 1px solid #77764b;
+      border-radius: 16px;
+      padding: 20px;
+  }
+
+  /* 왼쪽 제목 */
+  .coin-list-panel h2 {
+      margin-top: 0;
+      font-size: 20px;
+  }
+
+  /* 코인 50개 목록 */
+  .coin-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      max-height: 600px;
+      overflow-y: auto;
+  }
+
+  /* 코인 목록의 각 항목 */
+  .coin-list li {
+      margin-bottom: 6px;
+  }
+
+  /* 코인 선택 버튼 */
+  .coin-list-button {
+      width: 100%;
+      padding: 12px;
+
+      border: none;
+      border-radius: 8px;
+
+      background: #f4e9c9;
+      color: #252b13;
+
+      text-align: left;
+      cursor: pointer;
+  }
+
+  .coin-list-button:hover {
+      background: #b9bd90;
+  }
+
+  /* 오른쪽 상세 정보 */
+  .coin-detail-panel {
+      min-height: 400px;
+  }
+
+  .coin-detail-panel h2 {
+      margin-top: 0;
+      font-size: 28px;
+  }
+
+  .coin-symbol {
+      margin-left: 12px;
+      font-size: 16px;
+      color: #b9bd90;
+  }
+
+  /* 상세 정보 카드 4개 */
+  .coin-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+  }
+
+  .coin-stat-card {
+      min-width: 0;
+      padding: 20px;
+      background: #f4e9c9;
+      color: #252b13;
+      border-radius: 12px;
+  }
+
+  .coin-stat-card p {
+      margin: 0 0 8px;
+      font-size: 13px;
+  }
+
+  .coin-stat-card strong {
+      font-size: 18px;
+      overflow-wrap: anywhere;
+  }
+
+  .coin-change {
+      margin-top: 24px;
+  }
+
+  .coin-error {
+      color: #ff8585;
+  }
+
+  /* 화면이 좁아졌을 때 */
+  @media (max-width: 800px) {
+      .coin-layout {
+          grid-template-columns: 1fr;
+      }
+
+      .coin-stats {
+          grid-template-columns: 1fr;
+      }
+  }
+
+  /* --- 코인 이름과 가격 ---- */
+  .coin-list-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      font-size: 14px;
+  }
+
+  /* 코인 기호와 변동률 */
+  .coin-list-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+  }
+
+  /* 현재 선택한 코인 */
+  .coin-list-button.selected {
+      background: #b9bd90;
+      outline: 2px solid #f5d881;
+      outline-offset: -2px;
+  }
+
+  /* 상승 */
+  .coin-up {
+      color: #087c32;
+      font-weight: bold;
+  }
+
+  /* 하락 */
+  .coin-down {
+      color: #c52e2e;
+      font-weight: bold;
+  }
+
+  /* 긴 코인 이름 줄바꿈 */
+  .coin-list-top strong:first-child {
+      overflow-wrap: anywhere;
+  }
+
+  /* 가격은 오른쪽 정렬 */
+  .coin-list-top strong:last-child {
+      text-align: right;
+      white-space: nowrap;
+  }
 `;
 
 export default GlobalStyle;
