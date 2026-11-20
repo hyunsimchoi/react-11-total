@@ -1,14 +1,51 @@
 import ProjectCard from "../components/ProjectCard.tsx";
+import styled from "styled-components";
+
+// Home 페이지 전체
+const HomePage = styled.main`
+  padding: 36px;
+
+  @media (max-width: 600px) {
+    padding: 20px;
+  }
+`;
+
+// Home 상단 배너
+const Banner = styled.section`
+  padding: 36px;
+  margin-bottom: 28px;
+  border-radius: 18px;
+  background: #454a2a;
+
+  body.black-theme & {
+    background: #171717;
+  }
+`;
+
+// 프로젝트 카드 배치
+const ProjectGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 function Home() {
     return (
-        <div>
-            <section className="dashboard-banner">
+        <HomePage>
+            <Banner>
                 <h1>My Project Dashboard</h1>
                 <p>지금까지 구축한 포트폴리오 리스트입니다.</p>
-            </section>
+            </Banner>
 
-            <section className="project-grid">
+            <ProjectGrid>
                 <ProjectCard
                     icon="**"
                     title="투두"
@@ -50,8 +87,8 @@ function Home() {
                     description="게시글을 작성하고 확인하는 공간"
                     path="/board"
                 />
-            </section>
-        </div>
+            </ProjectGrid>
+        </HomePage>
     );
 }
 

@@ -1,10 +1,110 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
 
 type TodoItem = {
     id: number;
     text: string;
     completed: boolean;
 };
+
+// Todo 페이지 전체
+const TodoPage = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+
+  h1 {
+    color: #f5ecd2;
+    font-size: 28px;
+  }
+
+  body.black-theme & h1 {
+    color: #ffffff;
+  }
+`;
+
+// 할 일 입력 영역
+const TodoForm = styled.form`
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+`;
+
+// 할 일 입력창
+const TodoInput = styled.input`
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #77764b;
+  border-radius: 8px;
+
+  body.black-theme & {
+    background: #202020;
+    color: #ffffff;
+    border-color: #505050;
+  }
+`;
+
+// 추가 버튼
+const AddButton = styled.button`
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #b9bd90;
+  color: #252b13;
+  cursor: pointer;
+
+  body.black-theme & {
+    background: #444444;
+    color: #ffffff;
+  }
+`;
+
+// 할 일 목록
+const TodoList = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+
+// 할 일 하나
+const TodoRow = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #f4e9c9;
+  color: #252b13;
+  border-radius: 8px;
+
+  body.black-theme & {
+    background: #252525;
+    color: #ffffff;
+  }
+`;
+
+// 체크박스
+const TodoCheckbox = styled.input`
+  width: 18px;
+  height: 18px;
+  accent-color: #777d48;
+  cursor: pointer;
+`;
+
+// 삭제 버튼
+const DeleteButton = styled.button`
+  margin-left: auto;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #777d48;
+  color: #ffffff;
+  cursor: pointer;
+
+  body.black-theme & {
+    background: #333333;
+    color: #ffffff;
+  }
+`;
 
 function Todo() {
     const [text, setText] = useState("");             // 1. 입력창의 글자
@@ -56,25 +156,27 @@ function Todo() {
     }
 
     return (
-        <div className="todo-page">
+        <TodoPage>
             <h1>Todo 페이지</h1>
             <p>할 일을 관리하는 공간입니다.</p>
-            <form onSubmit={handleSubmit}>
-                <input
+
+            <TodoForm onSubmit={handleSubmit}>
+                <TodoInput
                     type="text"
                     placeholder="할 일을 입력하세요"
                     value={text}
                     onChange={e => setText(e.target.value)}
                 />
 
-                <button type="submit">추가</button>
-            </form>
+                <AddButton type="submit">추가</AddButton>
+            </TodoForm>
+
             <h2>할 일 목록</h2>
 
-            <ul className="todo-list">
+            <TodoList>
                 {todos.map(todo => (
-                    <li className="todo-item" key={todo.id}>
-                        <input
+                    <TodoRow key={todo.id}>
+                        <TodoCheckbox
                             type="checkbox"
                             checked={todo.completed}
                             onChange={() => toggleTodo(todo.id)}
@@ -88,13 +190,13 @@ function Todo() {
                             {todo.text}
                         </span>
 
-                        <button type="button" onClick={() => deleteTodo(todo.id)}>
+                        <DeleteButton type="button" onClick={() => deleteTodo(todo.id)}>
                             삭제
-                        </button>
-                    </li>
+                        </DeleteButton>
+                    </TodoRow>
                 ))}
-            </ul>
-        </div>
+            </TodoList>
+        </TodoPage>
     );
 }
 
