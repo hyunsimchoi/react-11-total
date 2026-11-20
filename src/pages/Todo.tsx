@@ -71,7 +71,7 @@ function Todo() {
             </form>
             <h2>할 일 목록</h2>
 
-            <ul className="todos-list">
+            <ul className="todo-list">
                 {todos.map(todo => (
                     <li className="todo-item" key={todo.id}>
                         <input
@@ -80,7 +80,13 @@ function Todo() {
                             onChange={() => toggleTodo(todo.id)}
                         />
 
-                        {todo.text}
+                        <span
+                            style={{
+                                textDecoration: todo.completed ? "line-through" : "none",
+                                opacity: todo.completed ? 0.6 : 1,
+                            }}>
+                            {todo.text}
+                        </span>
 
                         <button type="button" onClick={() => deleteTodo(todo.id)}>
                             삭제
