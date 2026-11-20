@@ -41,14 +41,12 @@ const GlobalStyle = createGlobalStyle`
   .logo {
       margin: 0;
       font-size: 26px;
-      justify-self: start;
   }
 
   /* 중앙 메뉴 */
   .nav-menu {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 24px;
   }
 
@@ -61,13 +59,11 @@ const GlobalStyle = createGlobalStyle`
   /* 오른쪽 다크 버튼 */
   .theme-button {
       justify-self: end;
-      width: auto;
-      min-width: 80px;
       padding: 8px 18px;
       border: 1px solid #77764b;
       border-radius: 20px;
       background: transparent;
-      color: #f5ecd2;
+      color: inherit;
       cursor: pointer;
   }
 
@@ -241,7 +237,6 @@ const GlobalStyle = createGlobalStyle`
   .todo-item input[type="checkbox"] {
       width: 18px;
       height: 18px;
-      accent-color: #777d48;
       cursor: pointer;
   }
 
@@ -257,81 +252,130 @@ const GlobalStyle = createGlobalStyle`
       cursor: pointer;
   }
 
-  /*  Coin Tracker 스타일--- */
-  .coin-page {
-      max-width: 1500px;
-      margin: 0 auto;
-  }
-
+  /* ----- Coin 페이지 전체 ----- */
   .coin-page h1 {
-      margin: 0 0 24px;
-      font-size: 30px;
+      margin-bottom: 24px;
   }
 
-  /* 2. 왼쪽 목록 + 오른쪽 상세 정보 */
+  /* 왼쪽 목록 + 오른쪽 상세 정보 */
   .coin-layout {
       display: grid;
-      grid-template-columns: 340px minmax(0, 1fr);
-      gap: 24px;
-      align-items: stretch;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
   }
 
-  /* 3. 양쪽 패널 공통 디자인 */
+  /* 양쪽 패널 공통 디자인 */
   .coin-list-panel,
   .coin-detail-panel {
-      min-width: 0;
       background: #454a2a;
       border: 1px solid #77764b;
-      border-radius: 18px;
-      padding: 24px;
+      border-radius: 16px;
+      padding: 20px;
   }
 
-  /* 4. 왼쪽 코인 목록 제목 */
+  /* 왼쪽 제목 */
   .coin-list-panel h2 {
-      margin: 0 0 18px;
+      margin-top: 0;
       font-size: 20px;
   }
 
-  /* 5. 코인 목록 스크롤 */
+  /* 코인 50개 목록 */
   .coin-list {
-      max-height: 540px;
-      overflow-y: auto;
       list-style: none;
-      padding: 0 6px 0 0;
+      padding: 0;
       margin: 0;
+
+      max-height: 600px;
+      overflow-y: auto;
   }
 
-  /* 6. 목록 항목 간격 */
+  /* 코인 목록의 각 항목 */
   .coin-list li {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
   }
 
-  /* 7. 코인 선택 버튼 */
+  /* 코인 선택 버튼 */
   .coin-list-button {
-      display: block;
       width: 100%;
-      padding: 14px;
+      padding: 12px;
+
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
+
       background: #f4e9c9;
       color: #252b13;
+
       text-align: left;
       cursor: pointer;
   }
 
-  /* 마우스를 올렸을 때 */
   .coin-list-button:hover {
-      background: #dce0b7;
-  }
-
-  /* 현재 선택한 코인 */
-  .coin-list-button.selected {
       background: #b9bd90;
-      outline: 2px solid #f5d881;
-      outline-offset: -2px;
   }
 
-  /* 8. 코인 이름과 가격 */
+  /* 오른쪽 상세 정보 */
+  .coin-detail-panel {
+      min-height: 400px;
+  }
+
+  .coin-detail-panel h2 {
+      margin-top: 0;
+      font-size: 28px;
+  }
+
+  .coin-symbol {
+      margin-left: 12px;
+      font-size: 16px;
+      color: #b9bd90;
+  }
+
+  /* 상세 정보 카드 4개 */
+  .coin-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+  }
+
+  .coin-stat-card {
+      min-width: 0;
+      padding: 20px;
+      background: #f4e9c9;
+      color: #252b13;
+      border-radius: 12px;
+  }
+
+  .coin-stat-card p {
+      margin: 0 0 8px;
+      font-size: 13px;
+  }
+
+  .coin-stat-card strong {
+      font-size: 18px;
+      overflow-wrap: anywhere;
+  }
+
+  .coin-change {
+      margin-top: 24px;
+  }
+
+  .coin-error {
+      color: #ff8585;
+  }
+
+  /* 화면이 좁아졌을 때 */
+  @media (max-width: 800px) {
+      .coin-layout {
+          grid-template-columns: 1fr;
+      }
+
+      .coin-stats {
+          grid-template-columns: 1fr;
+      }
+  }
+
+  /* --- 코인 이름과 가격 ---- */
   .coin-list-top {
       display: flex;
       justify-content: space-between;
@@ -341,7 +385,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 14px;
   }
 
-  /* 9. 코인 기호와 변동률 */
+  /* 코인 기호와 변동률 */
   .coin-list-bottom {
       display: flex;
       justify-content: space-between;
@@ -350,261 +394,34 @@ const GlobalStyle = createGlobalStyle`
       font-size: 12px;
   }
 
-  /* 긴 코인 이름 줄바꿈 */
-  .coin-list-top strong:first-child {
-      min-width: 0;
-      overflow-wrap: anywhere;
+  /* 현재 선택한 코인 */
+  .coin-list-button.selected {
+      background: #b9bd90;
+      outline: 2px solid #f5d881;
+      outline-offset: -2px;
   }
 
-  /* 가격 오른쪽 정렬 */
-  .coin-list-top strong:last-child {
-      flex-shrink: 0;
-      text-align: right;
-      white-space: nowrap;
-  }
-
-  /* 10. 상승 및 하락 색상 */
+  /* 상승 */
   .coin-up {
       color: #087c32;
       font-weight: bold;
   }
 
+  /* 하락 */
   .coin-down {
       color: #c52e2e;
       font-weight: bold;
   }
 
-  /* 11. 오른쪽 상세 정보 패널 */
-  .coin-detail-panel {
-      min-height: 620px;
-  }
-
-  .coin-detail-panel h2 {
-      margin: 0;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #77764b;
-      font-size: 30px;
-  }
-
-  /* 코인 기호 */
-  .coin-symbol {
-      margin-left: 12px;
-      font-size: 16px;
-      font-weight: normal;
-      color: #b9bd90;
-  }
-
-  /* 12. 상세 정보 카드 4개 */
-  .coin-stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 28px;
-  }
-
-  /* 개별 카드 */
-  .coin-stat-card {
-      min-width: 0;
-      padding: 22px;
-      background: #f4e9c9;
-      color: #252b13;
-      border-radius: 12px;
-  }
-
-  /* 카드 항목 이름 */
-  .coin-stat-card p {
-      margin: 0 0 10px;
-      font-size: 13px;
-      color: #777765;
-  }
-
-  /* 카드 데이터 */
-  .coin-stat-card strong {
-      font-size: 21px;
+  /* 긴 코인 이름 줄바꿈 */
+  .coin-list-top strong:first-child {
       overflow-wrap: anywhere;
   }
 
-  /* 24시간 변동률 */
-  .coin-change {
-      margin-top: 24px;
-      font-size: 16px;
-  }
-
-  /* API 오류 */
-  .coin-error {
-      color: #ff8585;
-  }
-
-  /* 13. 스크롤바 디자인 */
-  .coin-list::-webkit-scrollbar {
-      width: 7px;
-  }
-
-  .coin-list::-webkit-scrollbar-thumb {
-      background: #858969;
-      border-radius: 10px;
-  }
-
-  .coin-list::-webkit-scrollbar-track {
-      background: #30351d;
-      border-radius: 10px;
-  }
-
-  /* 14. 태블릿 화면 */
-  @media (max-width: 1000px) {
-      .coin-layout {
-          grid-template-columns: 280px minmax(0, 1fr);
-          gap: 16px;
-      }
-
-      .coin-list-panel,
-      .coin-detail-panel {
-          padding: 16px;
-      }
-  }
-
-  /* 15. 모바일 화면 */
-  @media (max-width: 700px) {
-      .coin-layout {
-          grid-template-columns: 1fr;
-      }
-
-      .coin-list {
-          max-height: 300px;
-      }
-
-      .coin-detail-panel {
-          min-height: auto;
-      }
-
-      .coin-stats {
-          grid-template-columns: 1fr;
-      }
-  }
-
-
-  /* ===============================
-   BLACK THEME
-================================ */
-
-  /* 홈페이지 전체 배경 */
-  body.black-theme {
-      background-color: #080808;
-      color: #f5f5f5;
-  }
-
-  /* Header */
-  body.black-theme .site-header {
-      background: #151515;
-      border-bottom-color: #383838;
-  }
-
-  body.black-theme .nav-menu a.active {
-      color: #ffffff;
-  }
-
-  body.black-theme .theme-button {
-      background: #252525;
-      border-color: #555555;
-      color: #ffffff;
-  }
-
-  /* Home 제목 영역 */
-  body.black-theme .dashboard-banner {
-      background: #171717;
-  }
-
-  /* Home 프로젝트 카드 */
-  body.black-theme .project-card,
-  body.black-theme .project-grid > :nth-child(even) .project-card {
-      background: #252525;
-      color: #f5f5f5;
-      border: 1px solid #404040;
-  }
-
-  /* Todo 목록 */
-  body.black-theme .todo-page h1 {
-      color: #f5f5f5;
-  }
-
-  body.black-theme .todo-item {
-      background: #252525;
-      color: #f5f5f5;
-  }
-
-  body.black-theme .todo-page form input {
-      background: #202020;
-      border-color: #505050;
-      color: #ffffff;
-  }
-
-  body.black-theme .todo-page form button {
-      background: #444444;
-      color: #ffffff;
-  }
-
-  body.black-theme .todo-item button {
-      background: #333333;
-      border-color: #555555;
-      color: #ffffff;
-  }
-
-  /* Coin 양쪽 패널 */
-  body.black-theme .coin-list-panel,
-  body.black-theme .coin-detail-panel {
-      background: #171717;
-      border-color: #383838;
-  }
-
-  /* Coin 목록 버튼 */
-  body.black-theme .coin-list-button {
-      background: #252525;
-      color: #f5f5f5;
-  }
-
-  body.black-theme .coin-list-button:hover {
-      background: #343434;
-  }
-
-  body.black-theme .coin-list-button.selected {
-      background: #414141;
-      outline-color: #999999;
-  }
-
-  /* Coin 상세 정보 카드 */
-  body.black-theme .coin-stat-card {
-      background: #252525;
-      color: #f5f5f5;
-  }
-
-  body.black-theme .coin-stat-card p {
-      color: #bbbbbb;
-  }
-
-  body.black-theme .coin-symbol {
-      color: #aaaaaa;
-  }
-
-  /* 코인 변동률은 구분되도록 유지 */
-  body.black-theme .coin-up {
-      color: #73d69a;
-  }
-
-  body.black-theme .coin-down {
-      color: #ff8585;
-  }
-
-  /* Coin 내부 구분선과 스크롤 */
-  body.black-theme .coin-detail-panel h2 {
-      border-bottom-color: #383838;
-  }
-
-  body.black-theme .coin-list::-webkit-scrollbar-track {
-      background: #171717;
-  }
-
-  body.black-theme .coin-list::-webkit-scrollbar-thumb {
-      background: #555555;
+  /* 가격은 오른쪽 정렬 */
+  .coin-list-top strong:last-child {
+      text-align: right;
+      white-space: nowrap;
   }
 `;
 
