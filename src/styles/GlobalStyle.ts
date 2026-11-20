@@ -237,6 +237,7 @@ const GlobalStyle = createGlobalStyle`
   .todo-item input[type="checkbox"] {
       width: 18px;
       height: 18px;
+      accent-color: #777d48;
       cursor: pointer;
   }
 
@@ -423,6 +424,135 @@ const GlobalStyle = createGlobalStyle`
       text-align: right;
       white-space: nowrap;
   }
+
+
+
+  /* ========== 블랙 테마 ========== */
+
+  /* 전체 배경 */
+  body.black-theme {
+      background-color: #080808;
+      color: #f5f5f5;
+  }
+
+  /* Header */
+  body.black-theme .site-header {
+      background: #151515;
+      border-bottom-color: #383838;
+  }
+
+  body.black-theme .theme-button {
+      background: #252525;
+      border-color: #555555;
+      color: #ffffff;
+  }
+
+  /* Home 제목 영역 */
+  body.black-theme .dashboard-banner {
+      background: #171717;
+  }
+
+  /* Home 프로젝트 카드 */
+  body.black-theme .project-card,
+  body.black-theme .project-grid > :nth-child(even) .project-card {
+      background: #252525;
+      color: #f5f5f5;
+      border: 1px solid #404040;
+  }
+
+  /* Todo 입력창 */
+  body.black-theme .todo-page form input {
+      background: #202020;
+      color: #ffffff;
+      border-color: #505050;
+  }
+
+  body.black-theme .todo-page form input::placeholder {
+      color: #aaaaaa;
+  }
+
+  /* Todo 추가 버튼 */
+  body.black-theme .todo-page form button {
+      background: #444444;
+      color: #ffffff;
+  }
+
+  /* Todo 목록 */
+  body.black-theme .todo-item {
+      background: #252525;
+      color: #f5f5f5;
+  }
+
+  /* Todo 삭제 버튼 */
+  body.black-theme .todo-item button {
+      background: #333333;
+      color: #ffffff;
+      border-color: #555555;
+  }
+
+  /* Todo 체크박스 */
+  body.black-theme .todo-item input[type="checkbox"] {
+      accent-color: #b9bd90;
+  }
+
+  /* Coin 목록과 상세 영역 */
+  body.black-theme .coin-list-panel,
+  body.black-theme .coin-detail-panel {
+      background: #171717;
+      border-color: #383838;
+  }
+
+  /* Coin 목록 버튼 */
+  body.black-theme .coin-list-button {
+      background: #252525;
+      color: #f5f5f5;
+  }
+
+  body.black-theme .coin-list-button:hover {
+      background: #343434;
+  }
+
+  /* 선택한 코인 */
+  body.black-theme .coin-list-button.selected {
+      background: #414141;
+      outline-color: #999999;
+  }
+
+  /* Coin 상세 카드 */
+  body.black-theme .coin-stat-card {
+      background: #252525;
+      color: #f5f5f5;
+  }
+
+  body.black-theme .coin-stat-card p {
+      color: #bbbbbb;
+  }
+
+  /* Coin 코인 기호 */
+  body.black-theme .coin-symbol {
+      color: #aaaaaa;
+  }
+
+  /* 상승률과 하락률 */
+  body.black-theme .coin-up {
+      color: #73d69a;
+  }
+
+  body.black-theme .coin-down {
+      color: #ff8585;
+  }
+
+  /* Coin 스크롤바 */
+  body.black-theme .coin-list::-webkit-scrollbar-track {
+      background: #171717;
+  }
+
+  body.black-theme .coin-list::-webkit-scrollbar-thumb {
+      background: #555555;
+  }
+  
+  
 `;
+
 
 export default GlobalStyle;

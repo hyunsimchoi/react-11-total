@@ -1,4 +1,4 @@
-import { createContext, useState, type ReactNode } from "react";
+import { createContext, useState, useEffect, type ReactNode } from "react";
 
 type ThemeMode = "olive" | "black";
 
@@ -15,12 +15,16 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const [theme, setTheme] = useState<ThemeMode>("olive");
 
     function toggleTheme() {
-        const nextTheme = theme === "olive" ? "black" : "olive";
-
-        setTheme(nextTheme);
-
-        document.body.classList.toggle("black-theme", nextTheme === "black");
+        setTheme(current => (current === "olive" ? "black" : "olive"));
     }
+
+    useEffect(() => {
+        document.body.classList.toggle("black-theme", theme === "black");
+
+        return () => {
+            document.body.classList.remove("black-theme");
+        };
+    }, [theme]);
 
     return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 }
