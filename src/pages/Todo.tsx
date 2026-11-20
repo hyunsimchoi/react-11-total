@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type TodoItem = {
     id: number;
@@ -7,8 +7,21 @@ type TodoItem = {
 };
 
 function Todo() {
-    const [text, setText] = useState(""); // 1. 입력창의 글자
-    const [todos, setTodos] = useState<TodoItem[]>([]); // 2. 할 일 목록
+    const [text, setText] = useState("");             // 1. 입력창의 글자
+    const [todos, setTodos] = useState<TodoItem[]>(() => {
+        const savedTodos = localStorage.getItem("todos");
+
+        if (savedTodos) {
+            return JSON.parse(savedTodos);
+        }
+
+        return [];
+    });
+
+    // 2. 할 일 목록 자동 저장
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
 
     // 3. 추가 버튼을 누르면 실행되는 함수(할 일 추가)
     function addTodo() {
@@ -23,14 +36,21 @@ function Todo() {
         setTodos([...todos, newTodo]);
         setText("");
     }
-    // 완료 여부 변경
+
+    // Enter 키 또는 추가버튼 눌렀을 때
+    function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+        e.preventDefault();
+        addTodo();
+    }
+
+    // 4. 완료 상태 변경
     function toggleTodo(id: number) {
         setTodos(
             todos.map(todo => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)),
         );
     }
 
-    // 할 일 삭제
+    // 5. 할 일 삭제
     function deleteTodo(id: number) {
         setTodos(todos.filter(todo => todo.id !== id));
     }
@@ -39,17 +59,16 @@ function Todo() {
         <div>
             <h1>Todo 페이지</h1>
             <p>할 일을 관리하는 공간입니다.</p>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="할 일을 입력하세요"
+                    value={text}
+                    onChange={e => setText(e.target.value)}
+                />
 
-            <input
-                type="text"
-                placeholder="할 일을 입력하세요"
-                value={text}
-                onChange={e => setText(e.target.value)}
-            />
-            <button type="button" onClick={addTodo}>
-                추가
-            </button>
-
+                <button type="submit">추가</button>
+            </form>
             <h2>할 일 목록</h2>
 
             <ul>
