@@ -9,7 +9,8 @@ type ProjectCardProps = {
 
 function ProjectCard({ icon, title, description, path }: ProjectCardProps) {
     const content = (
-        <div>
+        <div className="project-card">
+            <div className="card-icon">{icon}</div>
             <h2>
                 {icon} {title}
             </h2>

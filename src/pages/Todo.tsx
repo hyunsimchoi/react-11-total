@@ -56,7 +56,7 @@ function Todo() {
     }
 
     return (
-        <div>
+        <div className="todo-page">
             <h1>Todo 페이지</h1>
             <p>할 일을 관리하는 공간입니다.</p>
             <form onSubmit={handleSubmit}>
@@ -71,9 +71,9 @@ function Todo() {
             </form>
             <h2>할 일 목록</h2>
 
-            <ul>
+            <ul className="todos-list">
                 {todos.map(todo => (
-                    <li key={todo.id}>
+                    <li className="todo-item" key={todo.id}>
                         <input
                             type="checkbox"
                             checked={todo.completed}
